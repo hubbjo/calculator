@@ -10,17 +10,17 @@ pipeline {
         stage("Test") {
             steps {
                 sh "./mvnw test"
-				sh "./mvnw verify"
             }
         }
 		 stage("Code coverage Report") {
 		     steps {
-		          sh "./mvnw verify"
+		          sh "./mvnw jacoco:report"
 		          publishHTML (target: [
-		               reportDir: 'build/reports/jacoco/test/html',
+		               reportDir: 'target/site/jacoco',
 		               reportFiles: 'index.html',
 		               reportName: "JaCoCo Report"
 		          ])
+		          sh "./mvnw verify"
 		     }
          }
      }

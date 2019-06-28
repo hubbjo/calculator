@@ -26,5 +26,16 @@ pipeline {
 		          sh "./mvnw verify"
 		     }
          }
+		 stage("Static Code Analysis") {
+		     steps {
+		          sh "./mvnw site"
+		          publishHTML (target: [
+		               reportDir: 'target/site/',
+		               reportFiles: 'checkstyle.html',
+		               reportName: "Static Code Analysis Report"
+		          ])
+		          sh "./mvnw verify"
+		     }
+         }
      }
 }

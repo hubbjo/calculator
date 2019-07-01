@@ -31,10 +31,9 @@ pipeline {
 		          sh "./mvnw site"
 		          publishHTML (target: [
 		               reportDir: 'target/site/',
-		               reportFiles: 'checkstyle.html',
+		               reportFiles: 'project-reports.html',
 		               reportName: "Static Code Analysis Report"
 		          ])
-		          sh "./mvnw verify"
 		     }
          }
      }

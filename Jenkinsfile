@@ -40,7 +40,7 @@ pipeline {
 	 
 	 post {
 		always {
-			archiveArtifacts './target/site/**/*.*'
+			archiveArtifacts 'target/site/**/*.*'
 //			archiveArtifacts '../reports/mobile/**/*.html'
 //			junit '../reports/desktop/*'
 		}

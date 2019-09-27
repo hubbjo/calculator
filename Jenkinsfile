@@ -29,12 +29,20 @@ pipeline {
 		 stage("Static Code Analysis") {
 		     steps {
 		          sh "./mvnw site"
-		          publishHTML (target: [
-		               reportDir: 'target/site/',
-		               reportFiles: 'project-reports.html',
-		               reportName: "Static Code Analysis Report"
-		          ])
+//		          publishHTML (target: [
+//		               reportDir: 'target/site/',
+//		               reportFiles: 'project-reports.html',
+//		               reportName: "Static Code Analysis Report"
+//		          ])
 		     }
          }
      }
+	 
+	 post {
+		always {
+			archiveArtifacts './target/site/**/*.*'
+//			archiveArtifacts '../reports/mobile/**/*.html'
+//			junit '../reports/desktop/*'
+		}
+	 }
 }
